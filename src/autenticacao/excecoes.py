@@ -1,0 +1,2 @@
+class SenhaInvalidaError(Exception):
+    pass
