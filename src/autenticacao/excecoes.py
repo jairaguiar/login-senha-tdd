@@ -14,4 +14,4 @@ class SenhaInvalidaError(RegraNegocioError):
 
 
 class SenhaFracaError(RegraNegocioError):
-    pass
+    """RN03 – senha sem maiúscula, dígito ou caractere especial."""
