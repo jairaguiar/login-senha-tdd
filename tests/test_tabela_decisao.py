@@ -12,12 +12,12 @@ from autenticacao.validadores import validar_forca_senha
 TABELA_DECISAO = [
     # (id da regra, senha,        C1,    C2,    C3,    aceita)
     ("R1_TTT", "Senha#2026",  True,  True,  True,  True),
-    ("R2_TTF", "Senha2026x",  True,  True,  False, False),
+    ("R2_TTF_CT09", "Senha2026x",  True,  True,  False, False),
     ("R3_TFT", "Senha#Forte", True,  False, True,  False),
     ("R4_TFF", "SenhaForte",  True,  False, False, False),
     ("R5_FTT", "senha#2026",  False, True,  True,  False),
     ("R6_FTF", "senha2026x",  False, True,  False, False),
-    ("R7_FFT", "senha#forte", False, False, True,  False),
+    ("R7_FFT_CT10", "senha#forte", False, False, True,  False),
     ("R8_FFF", "senhaforte",  False, False, False, False),
 ]
 

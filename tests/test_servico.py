@@ -97,3 +97,21 @@ def test_ct16_login_de_usuario_inexistente_e_rejeitado(repo):
         ServicoAutenticacao(repo).login("fantasma", SENHA_CORRETA)
 
     repo.buscar.assert_called_once_with("fantasma")
+
+
+# ------------------------------------------- ordem das validações no cadastro
+@pytest.mark.parametrize(
+    "username,senha",
+    [("abc", "Senha#2026"), ("jair_rosa", "Curta#1"), ("jair_rosa", "senhafraca1"),
+     ("jair_rosa", "Jair_Rosa#1")],
+    ids=["RN01_username", "RN02_tamanho", "RN03_forca", "RN06_contem_username"],
+)
+def test_cadastro_invalido_nao_consulta_nem_salva_no_repositorio(repo, username, senha):
+    """Regras locais são verificadas antes da consulta externa (RN04)."""
+    from autenticacao.excecoes import RegraNegocioError
+
+    with pytest.raises(RegraNegocioError):
+        ServicoAutenticacao(repo).cadastrar(username, senha)
+
+    repo.existe.assert_not_called()
+    repo.salvar.assert_not_called()
