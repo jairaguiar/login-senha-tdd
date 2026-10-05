@@ -54,7 +54,7 @@ def validar_forca_senha(senha: str) -> None:
     tem_digito = any(c.isdigit() for c in senha)
     tem_especial = any(c in CARACTERES_ESPECIAIS for c in senha)
 
-    if not (tem_maiuscula and tem_digito and tem_especial):
+    if not (tem_maiuscula or tem_digito or tem_especial):
         faltando = [
             nome
             for nome, presente in (
