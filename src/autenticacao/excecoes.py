@@ -11,3 +11,7 @@ class RegraNegocioError(Exception):
 
 class SenhaInvalidaError(RegraNegocioError):
     """RN02 – tamanho da senha fora da faixa permitida."""
+
+
+class SenhaFracaError(RegraNegocioError):
+    pass
