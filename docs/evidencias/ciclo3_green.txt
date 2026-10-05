@@ -1,0 +1,28 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/claude/login-senha-tdd
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.1.0
+collecting ... collected 17 items
+
+tests/test_servico.py::test_ct01_cadastro_valido_salva_usuario_uma_vez PASSED [  5%]
+tests/test_servico.py::test_ct11_username_ja_cadastrado_e_rejeitado PASSED [ 11%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R1_TTT] PASSED [ 17%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R2_TTF] PASSED [ 23%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R3_TFT] PASSED [ 29%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R4_TFF] PASSED [ 35%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R5_FTT] PASSED [ 41%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R6_FTF] PASSED [ 47%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R7_FFT] PASSED [ 52%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R8_FFF] PASSED [ 58%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[CT06_limite_inferior_8] PASSED [ 64%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[9_caracteres] PASSED [ 70%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[19_caracteres] PASSED [ 76%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[CT07_limite_superior_20] PASSED [ 82%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_invalido_e_rejeitada[vazia] PASSED [ 88%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_invalido_e_rejeitada[CT05_abaixo_do_minimo_7] PASSED [ 94%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_invalido_e_rejeitada[CT08_acima_do_maximo_21] PASSED [100%]
+
+============================== 17 passed in 0.05s ==============================

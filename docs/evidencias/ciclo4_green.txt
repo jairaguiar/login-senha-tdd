@@ -1,0 +1,34 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/claude/login-senha-tdd
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.1.0
+collecting ... collected 23 items
+
+tests/test_servico.py::test_ct01_cadastro_valido_salva_usuario_uma_vez PASSED [  4%]
+tests/test_servico.py::test_ct11_username_ja_cadastrado_e_rejeitado PASSED [  8%]
+tests/test_servico.py::test_ct12_login_correto_autentica_e_zera_tentativas PASSED [ 13%]
+tests/test_servico.py::test_ct13_senha_errada_conta_falha_e_bloqueia_na_terceira[1a_falha] PASSED [ 17%]
+tests/test_servico.py::test_ct13_senha_errada_conta_falha_e_bloqueia_na_terceira[2a_falha_limite_menos_1] PASSED [ 21%]
+tests/test_servico.py::test_ct13_senha_errada_conta_falha_e_bloqueia_na_terceira[CT13_3a_falha_no_limite] PASSED [ 26%]
+tests/test_servico.py::test_ct14_conta_bloqueada_rejeita_mesmo_com_senha_correta PASSED [ 30%]
+tests/test_servico.py::test_ct16_login_de_usuario_inexistente_e_rejeitado PASSED [ 34%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R1_TTT] PASSED [ 39%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R2_TTF] PASSED [ 43%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R3_TFT] PASSED [ 47%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R4_TFF] PASSED [ 52%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R5_FTT] PASSED [ 56%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R6_FTF] PASSED [ 60%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R7_FFT] PASSED [ 65%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R8_FFF] PASSED [ 69%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[CT06_limite_inferior_8] PASSED [ 73%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[9_caracteres] PASSED [ 78%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[19_caracteres] PASSED [ 82%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[CT07_limite_superior_20] PASSED [ 86%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_invalido_e_rejeitada[vazia] PASSED [ 91%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_invalido_e_rejeitada[CT05_abaixo_do_minimo_7] PASSED [ 95%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_invalido_e_rejeitada[CT08_acima_do_maximo_21] PASSED [100%]
+
+============================== 23 passed in 0.05s ==============================
