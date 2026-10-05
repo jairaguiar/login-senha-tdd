@@ -9,6 +9,10 @@ class RegraNegocioError(Exception):
     """Base para qualquer violação de regra de negócio."""
 
 
+class UsernameInvalidoError(RegraNegocioError):
+    """RN01 – username com tamanho ou caracteres inválidos."""
+
+
 class SenhaInvalidaError(RegraNegocioError):
     """RN02 – tamanho da senha fora da faixa permitida."""
 
@@ -27,3 +31,7 @@ class CredenciaisInvalidasError(RegraNegocioError):
 
 class ContaBloqueadaError(RegraNegocioError):
     """RN05 – conta bloqueada por excesso de tentativas falhas."""
+
+
+class SenhaContemUsernameError(RegraNegocioError):
+    """RN06 – a senha contém o próprio username."""

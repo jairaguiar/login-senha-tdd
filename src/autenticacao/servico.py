@@ -11,7 +11,12 @@ from autenticacao.excecoes import (
 )
 from autenticacao.modelos import Usuario
 from autenticacao.repositorio import RepositorioUsuarios
-from autenticacao.validadores import validar_forca_senha, validar_tamanho_senha
+from autenticacao.validadores import (
+    validar_forca_senha,
+    validar_senha_sem_username,
+    validar_tamanho_senha,
+    validar_username,
+)
 
 LIMITE_TENTATIVAS = 3
 MSG_CREDENCIAIS_INVALIDAS = "RN05: usuário ou senha inválidos."
@@ -28,8 +33,9 @@ class ServicoAutenticacao:
 
     def cadastrar(self, username: str, senha: str) -> Usuario:
         """Valida as regras de cadastro e persiste o novo usuário."""
-        self._validar_regras_senha(senha)
-        self._garantir_username_disponivel(username)
+        validar_username(username)                     # RN01
+        self._validar_regras_senha(senha, username)    # RN02, RN03, RN06
+        self._garantir_username_disponivel(username)   # RN04 (consulta externa)
 
         sal = os.urandom(16).hex()
         usuario = Usuario(username, gerar_hash_senha(senha, sal), sal)
@@ -37,12 +43,13 @@ class ServicoAutenticacao:
         return usuario
 
     @staticmethod
-    def _validar_regras_senha(senha: str) -> None:
-        validar_tamanho_senha(senha)  # RN02
-        validar_forca_senha(senha)    # RN03
+    def _validar_regras_senha(senha: str, username: str) -> None:
+        validar_tamanho_senha(senha)                  # RN02
+        validar_forca_senha(senha)                    # RN03
+        validar_senha_sem_username(senha, username)   # RN06
 
     def _garantir_username_disponivel(self, username: str) -> None:
-        if self._repositorio.existe(username):  # RN04
+        if self._repositorio.existe(username):
             raise UsuarioJaExisteError(f"RN04: o usuário '{username}' já está cadastrado.")
 
     def login(self, username: str, senha: str) -> bool:
