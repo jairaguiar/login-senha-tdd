@@ -22,8 +22,8 @@ class UsuarioJaExisteError(RegraNegocioError):
 
 
 class CredenciaisInvalidasError(RegraNegocioError):
-    pass
+    """RN05 – usuário inexistente ou senha incorreta (mensagem única)."""
 
 
 class ContaBloqueadaError(RegraNegocioError):
-    pass
+    """RN05 – conta bloqueada por excesso de tentativas falhas."""

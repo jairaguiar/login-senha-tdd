@@ -1,6 +1,7 @@
 """Serviço de cadastro e login. A dependência externa (repositório) é injetada
 no construtor, o que permite substituí-la por um Mock nos testes."""
 import hashlib
+import hmac
 import os
 
 from autenticacao.excecoes import (
@@ -11,6 +12,9 @@ from autenticacao.excecoes import (
 from autenticacao.modelos import Usuario
 from autenticacao.repositorio import RepositorioUsuarios
 from autenticacao.validadores import validar_forca_senha, validar_tamanho_senha
+
+LIMITE_TENTATIVAS = 3
+MSG_CREDENCIAIS_INVALIDAS = "RN05: usuário ou senha inválidos."
 
 
 def gerar_hash_senha(senha: str, sal: str) -> str:
@@ -41,18 +45,37 @@ class ServicoAutenticacao:
         if self._repositorio.existe(username):  # RN04
             raise UsuarioJaExisteError(f"RN04: o usuário '{username}' já está cadastrado.")
 
-    def login(self, username, senha):
+    def login(self, username: str, senha: str) -> bool:
+        """RN05 – autentica o usuário; a 3ª falha consecutiva bloqueia a conta.
+
+        Usuário inexistente e senha errada geram a mesma exceção, para não
+        revelar a um atacante quais usernames existem.
+        """
         usuario = self._repositorio.buscar(username)
         if usuario is None:
-            raise CredenciaisInvalidasError("credenciais inválidas")
+            raise CredenciaisInvalidasError(MSG_CREDENCIAIS_INVALIDAS)
         if usuario.bloqueado:
-            raise ContaBloqueadaError("bloqueada")
-        if gerar_hash_senha(senha, usuario.sal) == usuario.senha_hash:
-            usuario.tentativas_falhas = 0
-            self._repositorio.salvar(usuario)
+            raise ContaBloqueadaError(
+                f"RN05: conta '{username}' bloqueada após "
+                f"{LIMITE_TENTATIVAS} tentativas falhas."
+            )
+        if self._senha_confere(usuario, senha):
+            self._registrar_sucesso(usuario)
             return True
-        usuario.tentativas_falhas = usuario.tentativas_falhas + 1
-        if usuario.tentativas_falhas >= 3:
+        self._registrar_falha(usuario)
+        raise CredenciaisInvalidasError(MSG_CREDENCIAIS_INVALIDAS)
+
+    @staticmethod
+    def _senha_confere(usuario: Usuario, senha: str) -> bool:
+        # compare_digest evita ataques de tempo (timing attacks).
+        return hmac.compare_digest(gerar_hash_senha(senha, usuario.sal), usuario.senha_hash)
+
+    def _registrar_sucesso(self, usuario: Usuario) -> None:
+        usuario.tentativas_falhas = 0
+        self._repositorio.salvar(usuario)
+
+    def _registrar_falha(self, usuario: Usuario) -> None:
+        usuario.tentativas_falhas += 1
+        if usuario.tentativas_falhas >= LIMITE_TENTATIVAS:
             usuario.bloqueado = True
         self._repositorio.salvar(usuario)
-        raise CredenciaisInvalidasError("credenciais inválidas")
