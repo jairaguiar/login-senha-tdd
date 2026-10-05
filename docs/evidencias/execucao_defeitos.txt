@@ -1,0 +1,236 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/claude/login-senha-tdd
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.1.0
+collecting ... collected 45 items
+
+tests/test_integracao.py::test_int_cadastro_seguido_de_login PASSED      [  2%]
+tests/test_integracao.py::test_int_cadastro_duplicado PASSED             [  4%]
+tests/test_integracao.py::test_int_fluxo_completo_de_bloqueio FAILED     [  6%]
+tests/test_integracao.py::test_int_sucesso_no_meio_zera_contador PASSED  [  8%]
+tests/test_servico.py::test_ct01_cadastro_valido_salva_usuario_uma_vez PASSED [ 11%]
+tests/test_servico.py::test_ct11_username_ja_cadastrado_e_rejeitado PASSED [ 13%]
+tests/test_servico.py::test_ct12_login_correto_autentica_e_zera_tentativas PASSED [ 15%]
+tests/test_servico.py::test_ct13_senha_errada_conta_falha_e_bloqueia_na_terceira[1a_falha] PASSED [ 17%]
+tests/test_servico.py::test_ct13_senha_errada_conta_falha_e_bloqueia_na_terceira[2a_falha_limite_menos_1] PASSED [ 20%]
+tests/test_servico.py::test_ct13_senha_errada_conta_falha_e_bloqueia_na_terceira[CT13_3a_falha_no_limite] FAILED [ 22%]
+tests/test_servico.py::test_ct14_conta_bloqueada_rejeita_mesmo_com_senha_correta PASSED [ 24%]
+tests/test_servico.py::test_ct16_login_de_usuario_inexistente_e_rejeitado PASSED [ 26%]
+tests/test_servico.py::test_cadastro_invalido_nao_consulta_nem_salva_no_repositorio[RN01_username] PASSED [ 28%]
+tests/test_servico.py::test_cadastro_invalido_nao_consulta_nem_salva_no_repositorio[RN02_tamanho] PASSED [ 31%]
+tests/test_servico.py::test_cadastro_invalido_nao_consulta_nem_salva_no_repositorio[RN03_forca] FAILED [ 33%]
+tests/test_servico.py::test_cadastro_invalido_nao_consulta_nem_salva_no_repositorio[RN06_contem_username] PASSED [ 35%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R1_TTT] PASSED [ 37%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R2_TTF_CT09] FAILED [ 40%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R3_TFT] FAILED [ 42%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R4_TFF] FAILED [ 44%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R5_FTT] FAILED [ 46%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R6_FTF] FAILED [ 48%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R7_FFT_CT10] FAILED [ 51%]
+tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R8_FFF] PASSED [ 53%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[CT06_limite_inferior_8] PASSED [ 55%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[9_caracteres] PASSED [ 57%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[19_caracteres] PASSED [ 60%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_valido_e_aceita[CT07_limite_superior_20] PASSED [ 62%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_invalido_e_rejeitada[vazia] PASSED [ 64%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_invalido_e_rejeitada[CT05_abaixo_do_minimo_7] PASSED [ 66%]
+tests/test_validadores.py::test_rn02_senha_com_tamanho_invalido_e_rejeitada[CT08_acima_do_maximo_21] PASSED [ 68%]
+tests/test_validadores.py::test_rn01_username_valido_e_aceito[limite_inferior_4] PASSED [ 71%]
+tests/test_validadores.py::test_rn01_username_valido_e_aceito[5_caracteres] PASSED [ 73%]
+tests/test_validadores.py::test_rn01_username_valido_e_aceito[14_caracteres] PASSED [ 75%]
+tests/test_validadores.py::test_rn01_username_valido_e_aceito[limite_superior_15] PASSED [ 77%]
+tests/test_validadores.py::test_rn01_username_valido_e_aceito[letras_digitos_underscore] PASSED [ 80%]
+tests/test_validadores.py::test_rn01_username_com_tamanho_invalido_e_rejeitado[vazio] PASSED [ 82%]
+tests/test_validadores.py::test_rn01_username_com_tamanho_invalido_e_rejeitado[CT02_abaixo_do_minimo_3] PASSED [ 84%]
+tests/test_validadores.py::test_rn01_username_com_tamanho_invalido_e_rejeitado[CT03_acima_do_maximo_16] PASSED [ 86%]
+tests/test_validadores.py::test_ct04_username_com_caractere_invalido_e_rejeitado[CT04_espaco] PASSED [ 88%]
+tests/test_validadores.py::test_ct04_username_com_caractere_invalido_e_rejeitado[arroba] PASSED [ 91%]
+tests/test_validadores.py::test_ct04_username_com_caractere_invalido_e_rejeitado[hifen] PASSED [ 93%]
+tests/test_validadores.py::test_ct04_username_com_caractere_invalido_e_rejeitado[acento] PASSED [ 95%]
+tests/test_validadores.py::test_ct15_senha_que_contem_o_username_e_rejeitada PASSED [ 97%]
+tests/test_validadores.py::test_rn06_senha_sem_o_username_e_aceita PASSED [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_int_fluxo_completo_de_bloqueio ______________________
+
+servico = <autenticacao.servico.ServicoAutenticacao object at 0x7fd890188fb0>
+
+    def test_int_fluxo_completo_de_bloqueio(servico):
+        servico.cadastrar("jair_rosa", "Senha#2026")
+        for _ in range(3):
+            with pytest.raises(CredenciaisInvalidasError):
+                servico.login("jair_rosa", "Errada#2026")
+>       with pytest.raises(ContaBloqueadaError):
+E       Failed: DID NOT RAISE ContaBloqueadaError
+
+tests/test_integracao.py:34: Failed
+_ test_ct13_senha_errada_conta_falha_e_bloqueia_na_terceira[CT13_3a_falha_no_limite] _
+
+repo = <Mock id='140568107192960'>, falhas_anteriores = 2, deve_bloquear = True
+
+    @pytest.mark.parametrize(
+        "falhas_anteriores,deve_bloquear",
+        [(0, False), (1, False), (2, True)],
+        ids=["1a_falha", "2a_falha_limite_menos_1", "CT13_3a_falha_no_limite"],
+    )
+    def test_ct13_senha_errada_conta_falha_e_bloqueia_na_terceira(repo, falhas_anteriores, deve_bloquear):
+        usuario = _usuario(tentativas_falhas=falhas_anteriores)
+        repo.buscar.return_value = usuario
+    
+        with pytest.raises(CredenciaisInvalidasError):
+            ServicoAutenticacao(repo).login("jair_rosa", "SenhaErrada#1")
+    
+        assert usuario.tentativas_falhas == falhas_anteriores + 1
+>       assert usuario.bloqueado is deve_bloquear
+E       AssertionError: assert False is True
+E        +  where False = Usuario(username='jair_rosa', senha_hash='bcff5ba3190a5f78fdcb053bf8579473e593db22f5c28d593f601ed817c68584', sal='sal-fixo', tentativas_falhas=3, bloqueado=False).bloqueado
+
+tests/test_servico.py:80: AssertionError
+___ test_cadastro_invalido_nao_consulta_nem_salva_no_repositorio[RN03_forca] ___
+
+repo = <Mock id='140568107194352'>, username = 'jair_rosa'
+senha = 'senhafraca1'
+
+    @pytest.mark.parametrize(
+        "username,senha",
+        [("abc", "Senha#2026"), ("jair_rosa", "Curta#1"), ("jair_rosa", "senhafraca1"),
+         ("jair_rosa", "Jair_Rosa#1")],
+        ids=["RN01_username", "RN02_tamanho", "RN03_forca", "RN06_contem_username"],
+    )
+    def test_cadastro_invalido_nao_consulta_nem_salva_no_repositorio(repo, username, senha):
+        """Regras locais são verificadas antes da consulta externa (RN04)."""
+        from autenticacao.excecoes import RegraNegocioError
+    
+>       with pytest.raises(RegraNegocioError):
+E       Failed: DID NOT RAISE RegraNegocioError
+
+tests/test_servico.py:113: Failed
+______________ test_rn03_tabela_decisao_forca_senha[R2_TTF_CT09] _______________
+
+senha = 'Senha2026x', aceita = False
+
+    @pytest.mark.parametrize(
+        "senha,aceita",
+        [(senha, aceita) for _, senha, _, _, _, aceita in TABELA_DECISAO],
+        ids=[regra for regra, *_ in TABELA_DECISAO],
+    )
+    def test_rn03_tabela_decisao_forca_senha(senha, aceita):
+        if aceita:
+            validar_forca_senha(senha)
+        else:
+>           with pytest.raises(SenhaFracaError):
+E           Failed: DID NOT RAISE SenhaFracaError
+
+tests/test_tabela_decisao.py:34: Failed
+_________________ test_rn03_tabela_decisao_forca_senha[R3_TFT] _________________
+
+senha = 'Senha#Forte', aceita = False
+
+    @pytest.mark.parametrize(
+        "senha,aceita",
+        [(senha, aceita) for _, senha, _, _, _, aceita in TABELA_DECISAO],
+        ids=[regra for regra, *_ in TABELA_DECISAO],
+    )
+    def test_rn03_tabela_decisao_forca_senha(senha, aceita):
+        if aceita:
+            validar_forca_senha(senha)
+        else:
+>           with pytest.raises(SenhaFracaError):
+E           Failed: DID NOT RAISE SenhaFracaError
+
+tests/test_tabela_decisao.py:34: Failed
+_________________ test_rn03_tabela_decisao_forca_senha[R4_TFF] _________________
+
+senha = 'SenhaForte', aceita = False
+
+    @pytest.mark.parametrize(
+        "senha,aceita",
+        [(senha, aceita) for _, senha, _, _, _, aceita in TABELA_DECISAO],
+        ids=[regra for regra, *_ in TABELA_DECISAO],
+    )
+    def test_rn03_tabela_decisao_forca_senha(senha, aceita):
+        if aceita:
+            validar_forca_senha(senha)
+        else:
+>           with pytest.raises(SenhaFracaError):
+E           Failed: DID NOT RAISE SenhaFracaError
+
+tests/test_tabela_decisao.py:34: Failed
+_________________ test_rn03_tabela_decisao_forca_senha[R5_FTT] _________________
+
+senha = 'senha#2026', aceita = False
+
+    @pytest.mark.parametrize(
+        "senha,aceita",
+        [(senha, aceita) for _, senha, _, _, _, aceita in TABELA_DECISAO],
+        ids=[regra for regra, *_ in TABELA_DECISAO],
+    )
+    def test_rn03_tabela_decisao_forca_senha(senha, aceita):
+        if aceita:
+            validar_forca_senha(senha)
+        else:
+>           with pytest.raises(SenhaFracaError):
+E           Failed: DID NOT RAISE SenhaFracaError
+
+tests/test_tabela_decisao.py:34: Failed
+_________________ test_rn03_tabela_decisao_forca_senha[R6_FTF] _________________
+
+senha = 'senha2026x', aceita = False
+
+    @pytest.mark.parametrize(
+        "senha,aceita",
+        [(senha, aceita) for _, senha, _, _, _, aceita in TABELA_DECISAO],
+        ids=[regra for regra, *_ in TABELA_DECISAO],
+    )
+    def test_rn03_tabela_decisao_forca_senha(senha, aceita):
+        if aceita:
+            validar_forca_senha(senha)
+        else:
+>           with pytest.raises(SenhaFracaError):
+E           Failed: DID NOT RAISE SenhaFracaError
+
+tests/test_tabela_decisao.py:34: Failed
+______________ test_rn03_tabela_decisao_forca_senha[R7_FFT_CT10] _______________
+
+senha = 'senha#forte', aceita = False
+
+    @pytest.mark.parametrize(
+        "senha,aceita",
+        [(senha, aceita) for _, senha, _, _, _, aceita in TABELA_DECISAO],
+        ids=[regra for regra, *_ in TABELA_DECISAO],
+    )
+    def test_rn03_tabela_decisao_forca_senha(senha, aceita):
+        if aceita:
+            validar_forca_senha(senha)
+        else:
+>           with pytest.raises(SenhaFracaError):
+E           Failed: DID NOT RAISE SenhaFracaError
+
+tests/test_tabela_decisao.py:34: Failed
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.3-final-0 ________________
+
+Name                              Stmts   Miss Branch BrPart  Cover   Missing
+-----------------------------------------------------------------------------
+src/autenticacao/__init__.py          0      0      0      0   100%
+src/autenticacao/excecoes.py          8      0      0      0   100%
+src/autenticacao/modelos.py           8      0      0      0   100%
+src/autenticacao/repositorio.py      12      0      0      0   100%
+src/autenticacao/servico.py          52      1     10      1    97%   87
+src/autenticacao/validadores.py      29      0     10      0   100%
+-----------------------------------------------------------------------------
+TOTAL                               109      1     20      1    98%
+=========================== short test summary info ============================
+FAILED tests/test_integracao.py::test_int_fluxo_completo_de_bloqueio - Failed...
+FAILED tests/test_servico.py::test_ct13_senha_errada_conta_falha_e_bloqueia_na_terceira[CT13_3a_falha_no_limite]
+FAILED tests/test_servico.py::test_cadastro_invalido_nao_consulta_nem_salva_no_repositorio[RN03_forca]
+FAILED tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R2_TTF_CT09]
+FAILED tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R3_TFT]
+FAILED tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R4_TFF]
+FAILED tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R5_FTT]
+FAILED tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R6_FTF]
+FAILED tests/test_tabela_decisao.py::test_rn03_tabela_decisao_forca_senha[R7_FFT_CT10]
+========================= 9 failed, 36 passed in 0.22s =========================
