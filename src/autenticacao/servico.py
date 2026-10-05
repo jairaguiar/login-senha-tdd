@@ -83,6 +83,6 @@ class ServicoAutenticacao:
 
     def _registrar_falha(self, usuario: Usuario) -> None:
         usuario.tentativas_falhas += 1
-        if usuario.tentativas_falhas >= LIMITE_TENTATIVAS:
+        if usuario.tentativas_falhas > LIMITE_TENTATIVAS:
             usuario.bloqueado = True
         self._repositorio.salvar(usuario)
