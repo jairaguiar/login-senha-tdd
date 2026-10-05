@@ -18,4 +18,4 @@ class SenhaFracaError(RegraNegocioError):
 
 
 class UsuarioJaExisteError(RegraNegocioError):
-    pass
+    """RN04 – username já cadastrado."""

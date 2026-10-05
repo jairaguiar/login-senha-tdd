@@ -1,3 +1,4 @@
+"""Modelos de dados (dataclasses) do módulo de autenticação."""
 from dataclasses import dataclass
 
 
