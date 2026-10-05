@@ -3,7 +3,11 @@ no construtor, o que permite substituí-la por um Mock nos testes."""
 import hashlib
 import os
 
-from autenticacao.excecoes import UsuarioJaExisteError
+from autenticacao.excecoes import (
+    ContaBloqueadaError,
+    CredenciaisInvalidasError,
+    UsuarioJaExisteError,
+)
 from autenticacao.modelos import Usuario
 from autenticacao.repositorio import RepositorioUsuarios
 from autenticacao.validadores import validar_forca_senha, validar_tamanho_senha
@@ -36,3 +40,19 @@ class ServicoAutenticacao:
     def _garantir_username_disponivel(self, username: str) -> None:
         if self._repositorio.existe(username):  # RN04
             raise UsuarioJaExisteError(f"RN04: o usuário '{username}' já está cadastrado.")
+
+    def login(self, username, senha):
+        usuario = self._repositorio.buscar(username)
+        if usuario is None:
+            raise CredenciaisInvalidasError("credenciais inválidas")
+        if usuario.bloqueado:
+            raise ContaBloqueadaError("bloqueada")
+        if gerar_hash_senha(senha, usuario.sal) == usuario.senha_hash:
+            usuario.tentativas_falhas = 0
+            self._repositorio.salvar(usuario)
+            return True
+        usuario.tentativas_falhas = usuario.tentativas_falhas + 1
+        if usuario.tentativas_falhas >= 3:
+            usuario.bloqueado = True
+        self._repositorio.salvar(usuario)
+        raise CredenciaisInvalidasError("credenciais inválidas")

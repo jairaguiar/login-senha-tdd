@@ -19,3 +19,11 @@ class SenhaFracaError(RegraNegocioError):
 
 class UsuarioJaExisteError(RegraNegocioError):
     """RN04 – username já cadastrado."""
+
+
+class CredenciaisInvalidasError(RegraNegocioError):
+    pass
+
+
+class ContaBloqueadaError(RegraNegocioError):
+    pass
